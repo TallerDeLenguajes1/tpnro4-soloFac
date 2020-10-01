@@ -47,7 +47,7 @@ namespace ProgramaCadeteria
             for (int i = 0; i < cantCad; i++)
             {
                 Cadete nCadete = new Cadete();
-                nCadete.GenerarCadete();
+                nCadete.GenerarPersona();
 
                 listado.Add(nCadete);
             }

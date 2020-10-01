@@ -39,15 +39,15 @@ namespace ProgramaCadeteria
         //    return nCliente;
         //}
 
-        public void GenerarCliente()
+        /*public override void generarpersona()
         {
-            Random aleat = new Random();
+            random aleat = new random();
 
-            this.ID = aleat.Next(550);
-            this.Nombre = Nombres[aleat.Next(Nombres.Length)];
-            this.Direccion = Direcciones[aleat.Next(Direcciones.Length)];
-            this.Telefono = Telefonos[aleat.Next(Telefonos.Length)];
-        }
+            this.id = aleat.next(550);
+            this.nombre = nombres[aleat.next(nombres.length)];
+            this.direccion = direcciones[aleat.next(direcciones.length)];
+            this.telefono = telefonos[aleat.next(telefonos.length)];
+        }*/
 
         public string DatosCliente()
         {

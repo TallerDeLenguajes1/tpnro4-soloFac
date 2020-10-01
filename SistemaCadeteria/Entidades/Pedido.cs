@@ -35,7 +35,7 @@ namespace ProgramaCadeteria
             this.Estado = Estado;   //Deberia inicializarlo en false?
             //Composicion
             this.PCliente = new Cliente();  //Consulta
-            this.PCliente.GenerarCliente();
+            this.PCliente.GenerarPersona();
         }
 
         public string DatosPedido()
@@ -56,7 +56,7 @@ namespace ProgramaCadeteria
             this.Observacion = Observaciones[aleat.Next(Observaciones.Length)];
             this.Estado = false;
             //this.PCliente = Cliente.GenerarCliente();
-            this.PCliente.GenerarCliente();             //Consulta: estaria bien generar un cliente sin un new?
+            this.PCliente.GenerarPersona();             //Consulta: estaria bien generar un cliente sin un new?
         }
 
         public void MostrarDatosPedido()
