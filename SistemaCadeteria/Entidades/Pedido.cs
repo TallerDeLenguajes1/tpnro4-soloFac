@@ -4,19 +4,34 @@ using System.Text;
 
 namespace ProgramaCadeteria
 {
+    //Consulta
+    enum TipoPedido
+    {
+        Cupon,
+        Ecologico,
+        Express,
+        Delicados
+    }
+
     class Pedido
     {
         private float numeroCliente;
         private string observacion;
         private bool estado;
         private Cliente pCliente;
+        //Consulta
+        private static int CostoBasePedido = 150;
+        //Consulta
+        private static Dictionary<TipoPedido, int> ValoresPedidos = new Dictionary<TipoPedido, int>()
+        { {TipoPedido.Cupon, (9*CostoBasePedido)/10}, {TipoPedido.Ecologico, CostoBasePedido}, 
+          {TipoPedido.Express, (125*CostoBasePedido)/100}, {TipoPedido.Delicados, (130*CostoBasePedido)/100} };
 
         public float NumeroCliente { get => numeroCliente; set => numeroCliente = value; }
         public string Observacion { get => observacion; set => observacion = value; }
         public bool Estado { get => estado; set => estado = value; }
         internal Cliente PCliente { get => pCliente; set => pCliente = value; }
 
-        string[] Observaciones = { "Forma de pago: Tarjeta", "Comida caliente", "Sabores: Frutilla y Vainilla", "Sin aceitunas"};
+        static string[] Observaciones = { "Forma de pago: Tarjeta", "Comida caliente", "Sabores: Frutilla y Vainilla", "Sin aceitunas"};
 
 
         //CONSTRUCTOR POR DEFECTO
