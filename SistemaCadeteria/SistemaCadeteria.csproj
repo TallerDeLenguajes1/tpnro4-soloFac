@@ -36,11 +36,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cadete.cs" />
-    <Compile Include="Cadeteria.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="Pedido.cs" />
+    <Compile Include="Entidades\Cadete.cs" />
+    <Compile Include="Entidades\Cadeteria.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Pedido.cs" />
+    <Compile Include="Entidades\Persona.cs" />
+    <Compile Include="Helper\Helper.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
