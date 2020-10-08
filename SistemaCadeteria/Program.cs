@@ -6,7 +6,10 @@ namespace ProgramaCadeteria
     {
         static void Main(string[] args)
         {
-            
+            Cadeteria nCadeteria;
+            nCadeteria = Helper.GenerarCadeteria();
+
+            Helper.GenerarInforme(nCadeteria);
         }
     }
 }
