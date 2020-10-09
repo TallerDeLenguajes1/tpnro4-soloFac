@@ -28,16 +28,17 @@ namespace ProgramaCadeteria
         }
 
         //CONSTRUCTOR DE CADETE
-        public Cadete(int ID, string Nombre, string Direccion, string Telefono, List<Pedido> listaPedidos)
+        public Cadete(int ID, string Nombre, string Direccion, string Telefono)
         {
             this.ID = ID;
             this.Nombre = Nombre;
             this.Direccion = Direccion;
             this.Telefono = Telefono;
             //Agregacion
-            this.ListadoPedidos = new List<Pedido>(listaPedidos);
+            this.ListadoPedidos = new List<Pedido>();
         }
 
+        
         //Agregacion
         public void AgregarPedido(Pedido nPedido)
         {
@@ -71,7 +72,7 @@ namespace ProgramaCadeteria
         /// </summary>
         /// <param name="listadoPedidoCadete"></param>
         /// <returns>Cantidad de Pedidos Entregados</returns>
-        public int DeterminarCantidadPedidosEntregados()
+        public float DeterminarCantidadPedidosEntregados()
         {
             int cantPedidosEntregados = 0;
 
@@ -90,7 +91,7 @@ namespace ProgramaCadeteria
         /// Recibe un cadete y retorna la Cantidad Total de Pedidos (suma de pedidos entregados y no entregados)
         /// </summary>
         /// <returns>Cantidad total de pedidos</returns>
-        public int CantidadTotalPedidos()
+        public float CantidadTotalPedidos()
         {
             return this.listadoPedidos.Count;
         }

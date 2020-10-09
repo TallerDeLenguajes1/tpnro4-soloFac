@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace ProgramaCadeteria
@@ -25,7 +26,6 @@ namespace ProgramaCadeteria
         {
             InformeCadetes(nCadeteria.ListadoCadetes);
 
-            //DETERMINAR CANTIDAD DE PEDIDOS ENTREGADOS
             Console.WriteLine("El cadete con mas entregas realizadas es: ");
             Cadete cadeteMasEntregasRealizadas = nCadeteria.CadeteMasEntregas();
             MostrarDatosCadete(cadeteMasEntregasRealizadas);
@@ -44,106 +44,95 @@ namespace ProgramaCadeteria
         }
 
 
-        public static Cadeteria GenerarCadeteria()
+        public static void GenerarCadeteria(Cadeteria nCadeteria)
         {
-            Cadeteria nCadeteria = new Cadeteria();
             Random aleat = new Random();
 
             nCadeteria.Nombre = "Cadeteria Rapida";
-            nCadeteria.ListadoCadetes = GenerarListadoCadetes();
-
-            return nCadeteria;
+            GenerarListadoCadetes(nCadeteria.ListadoCadetes);
+            foreach (Cadete cadete in nCadeteria.ListadoCadetes)
+            {
+                GenerarListadoPedidos(cadete.ListadoPedidos);
+                DeterminarEntregaPedidos(cadete.ListadoPedidos);
+            }
         }
 
         /// <summary>
         /// Genera Cadete de valores aleatorios ID, Nombre, Direccion, Telefono, Listado de Pedidos Vacio
         /// </summary>
-        public static Cadete GenerarCadete()
+        public static void GenerarCadete(Cadete nCadete)
         {
-            Cadete nCadete = new Cadete();
             Random aleat = new Random();
 
             nCadete.ID = aleat.Next(550);
             nCadete.Nombre = NombresCadetes[aleat.Next(NombresCadetes.Length)];
             nCadete.Direccion = DireccionesCadetes[aleat.Next(DireccionesCadetes.Length)];
             nCadete.Telefono = TelefonosCadetes[aleat.Next(TelefonosCadetes.Length)];
-
-            return nCadete;
         }
 
-        public static Cliente GenerarCliente()
+        public static void GenerarCliente(Cliente nCliente)
         {
-            Cliente nCliente = new Cliente();
             Random aleat = new Random();
 
             nCliente.ID = aleat.Next(550);
-            nCliente.Nombre = NombresClientes[aleat.Next(NombresClientes.Length + 1)];
-            nCliente.Direccion = DireccionesClientes[aleat.Next(DireccionesClientes.Length + 1)];
-            nCliente.Telefono = TelefonosClientes[aleat.Next(TelefonosClientes.Length + 1)];
-
-            return nCliente;        //Retorna la referencia de nCliente
+            nCliente.Nombre = NombresClientes[aleat.Next(NombresClientes.Length)];
+            nCliente.Direccion = DireccionesClientes[aleat.Next(DireccionesClientes.Length)];
+            nCliente.Telefono = TelefonosClientes[aleat.Next(TelefonosClientes.Length)];
         }
 
-        public static Pedido GenerarPedido()
+        public static void GenerarPedido(Pedido nPedido)
         {
-            Pedido nPedido = new Pedido();
             Random aleat = new Random();
 
             nPedido.NumeroCliente = aleat.Next(550);
             nPedido.Observacion = Observaciones[aleat.Next(Observaciones.Length)];
             nPedido.Estado = false;
-            nPedido.PCliente = GenerarCliente();             //Consulta: estaria bien generar un cliente sin un new?
-
-            return nPedido;
+            GenerarCliente(nPedido.PCliente);
         }
 
 
-        //Consulta: Hay algo que no se puede hacer cuando declaro una clase o metodo como static
         /// <summary>
         /// Genera Listado de Pedidos con sus respectivos valores aleatorios 
         /// </summary>
         /// <param name="cantPedidos"></param>
         /// <returns></returns>
-        public static List<Pedido> GenerarListadoPedidos()
+        public static void GenerarListadoPedidos(List<Pedido> listadoPedidos)
         {
             Pedido nPedido;
-            List<Pedido> nListaPedidos = new List<Pedido>();
-            Console.WriteLine("Cantidad de Cadetes a Registrar");
-            int cantPed = Convert.ToInt32(Console.ReadKey());
+            Console.WriteLine("Cantidad de Pedidos a Registrar");
+            int cantPed = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < cantPed; i++)
             {
-                nPedido = GenerarPedido();
-                nListaPedidos.Add(nPedido);
+                nPedido = new Pedido();
+                GenerarPedido(nPedido);
+                listadoPedidos.Add(nPedido);
             }
-            return nListaPedidos;
         }
         /// <summary>
         /// Genera Listado de Cadetedes con sus respectivos valores aleatorios ID, Nombre, Direccion, Telefono, Listado de Pedidos Vacio
         /// </summary>
         /// <returns>void</returns>
-        public static List<Cadete> GenerarListadoCadetes()
+        public static void GenerarListadoCadetes(List<Cadete> listadoCadetes)
         {
             Cadete nCadete;
-            List<Cadete> listado = new List<Cadete>();
             Console.WriteLine("Cantidad de Cadetes a Registrar");
             int cantCad = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < cantCad; i++)
             {
-                nCadete = GenerarCadete();
+                nCadete = new Cadete();
+                GenerarCadete(nCadete);
 
-                listado.Add(nCadete);
+                listadoCadetes.Add(nCadete);
             }
-
-            return listado;
         }
 
         /// <summary>
         /// Determina si el Pedido fue entregado o no
         /// </summary>
         /// <returns>Lista completa con los valores que ya tenia y su Estado de entrega que se detemrino en esta funcion</returns>
-        public static List<Pedido> DeterminarEntregaPedidos(List<Pedido> listadoPedidos)
+        public static void DeterminarEntregaPedidos(List<Pedido> listadoPedidos)
         {
             foreach (Pedido _pedido in listadoPedidos)
             {
@@ -156,16 +145,13 @@ namespace ProgramaCadeteria
                     _pedido.Estado = false;
                 }
             }
-
-            return listadoPedidos;
         }
 
 
         public static void MostrarDatosPedido(Pedido nPedido)
         {
-            Console.WriteLine("Datos del Pedido: ");
-
-            Console.WriteLine("Numero de Cliente: " + nPedido.NumeroCliente);
+            Console.WriteLine("\nDatos del Pedido: ");
+            Console.WriteLine("\nNumero de Cliente: " + nPedido.NumeroCliente);
             Console.WriteLine("Observacion del Pedido: " + nPedido.Observacion);
             Console.WriteLine("Estado: " + nPedido.Estado);
             Console.WriteLine("Cliente que realizo el pedido: ");
@@ -173,16 +159,16 @@ namespace ProgramaCadeteria
         }
         public static void MostrarDatosCliente(Cliente nCliente)
         {
-            Console.WriteLine("Datos del Cliente: ");
-            Console.WriteLine("ID: " + nCliente.ID);
+            Console.WriteLine("\nDatos del Cliente: ");
+            Console.WriteLine("\nID: " + nCliente.ID);
             Console.WriteLine("Nombre: " + nCliente.Nombre);
             Console.WriteLine("Direccion" + nCliente.Direccion);
             Console.WriteLine("Telefono " + nCliente.Telefono);
         }
         public static void MostrarDatosCadete(Cadete nCadete)
         {
-            Console.WriteLine("Datos del Cadete: ");
-            Console.WriteLine("ID: " + nCadete.ID);
+            Console.WriteLine("\nDatos del Cadete: ");
+            Console.WriteLine("\nID: " + nCadete.ID);
             Console.WriteLine("Nombre: " + nCadete.Nombre);
             Console.WriteLine("Direccion: " + nCadete.Direccion);
             Console.WriteLine("Telefono: " + nCadete.Telefono);
@@ -191,7 +177,8 @@ namespace ProgramaCadeteria
 
         public static void InformeCadete(Cadete cadete)
         {
-            Console.WriteLine("Nombre: " + cadete.Nombre);
+            Console.WriteLine("\nInforme del Cadete: ");
+            Console.WriteLine("\nNombre: " + cadete.Nombre);
             Console.WriteLine("Cantidad de Pedidos Entregados: " + cadete.DeterminarCantidadPedidosEntregados());
             Console.WriteLine("Paga jornal: " + cadete.DeterminarPago());
         }

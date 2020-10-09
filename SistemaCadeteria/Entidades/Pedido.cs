@@ -16,9 +16,6 @@ namespace ProgramaCadeteria
         public bool Estado { get => estado; set => estado = value; }
         internal Cliente PCliente { get => pCliente; set => pCliente = value; }
 
-        
-
-
         //CONSTRUCTOR POR DEFECTO
         public Pedido()
         {

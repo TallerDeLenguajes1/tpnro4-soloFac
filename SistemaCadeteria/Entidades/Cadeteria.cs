@@ -15,15 +15,20 @@ namespace ProgramaCadeteria
 
         public Cadeteria()
         {
-            //Composicion
+            //Agregacion
             this.ListadoCadetes = new List<Cadete>();
         }
 
         public Cadeteria(string Nombre, List<Cadete> ListadoCadetes)
         {
             this.Nombre = Nombre;
-            //Composicion con Cadetes
+            //Agregacion con Cadetes
             this.ListadoCadetes = new List<Cadete>(ListadoCadetes);
+        }
+
+        public void AgregarCadete(Cadete nCadete)
+        {
+            this.ListadoCadetes.Add(nCadete);
         }
 
         /// <summary>
@@ -33,11 +38,11 @@ namespace ProgramaCadeteria
         public Cadete CadeteMasEntregas()
         {
             Cadete CadeteMasEntregas = new Cadete();
-            int MaxPedidosEntregados = 0;
+            float MaxPedidosEntregados = 0;
 
             foreach (Cadete cadete in this.ListadoCadetes)
             {
-                int cantPedidosEntregados = cadete.DeterminarCantidadPedidosEntregados();
+                float cantPedidosEntregados = cadete.DeterminarCantidadPedidosEntregados();
                 if (cantPedidosEntregados > MaxPedidosEntregados)
                 {
                     CadeteMasEntregas = cadete;
