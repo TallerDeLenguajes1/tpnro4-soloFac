@@ -1,44 +1,44 @@
-﻿using System;
+﻿using SistemaCadeteria.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace ProgramaCadeteria
 {
-    class Cadete
+    enum Vehiculo
     {
-        int iD;
-        string nombre;
-        string direccion;
-        string telefono;
+        Bici,
+        Moto,
+        Auto
+    }
+
+    class Cadete : Persona
+    {
         List<Pedido> listadoPedidos;
+        Vehiculo tipoVehiculo;
 
-        public int ID { get => iD; set => iD = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public string Direccion { get => direccion; set => direccion = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
         internal List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
-
-        
+        internal Vehiculo TipoVehiculo { get => tipoVehiculo; set => tipoVehiculo = value; }
 
         //CONSTRUCTOR POR DEFECTO
-        public Cadete()
+        public Cadete() : base()
         {
             this.ListadoPedidos = new List<Pedido>();
         }
 
         //CONSTRUCTOR DE CADETE
-        public Cadete(int ID, string Nombre, string Direccion, string Telefono)
+        public Cadete(int ID, string Nombre, string Direccion, string Telefono, Vehiculo TipoVehiculo) : base (ID, Nombre, Direccion, Telefono)
         {
             this.ID = ID;
             this.Nombre = Nombre;
             this.Direccion = Direccion;
             this.Telefono = Telefono;
+            this.TipoVehiculo = TipoVehiculo;
             //Agregacion
             this.ListadoPedidos = new List<Pedido>();
         }
 
-        
         //Agregacion
         public void AgregarPedido(Pedido nPedido)
         {
@@ -100,7 +100,6 @@ namespace ProgramaCadeteria
         {
             return (this.ID + ";" + this.Nombre + ";" + this.Direccion + ";" + this.Telefono);
         }
-
 
     }
 }

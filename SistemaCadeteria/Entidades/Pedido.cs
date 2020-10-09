@@ -10,6 +10,8 @@ namespace ProgramaCadeteria
         private string observacion;
         private bool estado;
         private Cliente pCliente;
+        private static float costoBase = 150;
+        private static float descuento = 10;
 
         public float NumeroCliente { get => numeroCliente; set => numeroCliente = value; }
         public string Observacion { get => observacion; set => observacion = value; }
@@ -43,5 +45,10 @@ namespace ProgramaCadeteria
             return (this.pCliente.DatosCliente());
         }
 
+
+        public virtual float Costo()
+        {
+            return costoBase;
+        }
     }
 }

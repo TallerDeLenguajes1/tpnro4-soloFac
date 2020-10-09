@@ -1,29 +1,23 @@
-﻿using System;
+﻿using SistemaCadeteria.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProgramaCadeteria
 {
-    class Cliente
+    class Cliente : Persona
     {
-        private int iD;
-        private string nombre;
-        private string direccion;
-        private string telefono;
+        private List<Pedido> listadoPedidos;
 
-        public int ID { get => iD; set => iD = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public string Direccion { get => direccion; set => direccion = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
+        internal List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
 
         //CONSTRUCTOR POR DEFECTO
-        public Cliente()
+        public Cliente() : base ()
         {
-
         }
 
         //CONSTRUCTOR DE CLIENTE
-        public Cliente(int ID, string Nombre, string Direccion, string Telefono)
+        public Cliente(int ID, string Nombre, string Direccion, string Telefono) : base (ID, Nombre, Direccion, Telefono)
         {
             this.ID = ID;
             this.Nombre = Nombre;
@@ -31,10 +25,21 @@ namespace ProgramaCadeteria
             this.Telefono = Telefono;
         }
 
+
         public string DatosCliente()
         {
             return (this.ID + ";" + this.Nombre + ";" + this.Direccion + ";" + this.Telefono);
         }
 
+        public void AgregarPedido(Pedido nPedido)
+        {
+            ListadoPedidos.Add(nPedido);
+        }
+
+        public float PedidosRealizados()
+        {
+
+            return 0;
+        }
     }
 }

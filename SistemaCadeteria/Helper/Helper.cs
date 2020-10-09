@@ -61,8 +61,6 @@ namespace ProgramaCadeteria
             }
         }
 
-
-
         public static void GenerarPersona(Persona nPersona)
         {
             nPersona.ID = aleat.Next(550);
@@ -189,6 +187,24 @@ namespace ProgramaCadeteria
             Console.WriteLine("\nNombre: " + cadete.Nombre);
             Console.WriteLine("Cantidad de Pedidos Entregados: " + cadete.DeterminarCantidadPedidosEntregados());
             Console.WriteLine("Paga jornal: " + cadete.DeterminarPago());
+        }
+
+        public static void DeterminarVehiculo(Cadete nCadete)
+        {
+            int variable = aleat.Next(3);
+
+            if (variable == 0)
+            {
+                nCadete.TipoVehiculo1 = Vehiculo.Bici;
+            }
+            else if (variable == 1)
+            {
+                nCadete.TipoVehiculo1 = Vehiculo.Moto;
+            }
+            else
+            {
+                nCadete.TipoVehiculo1 = Vehiculo.Auto;
+            }
         }
 
     }

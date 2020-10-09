@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaCadeteria.Entidades.Tipos_Pedidos;
+using System;
 
 namespace ProgramaCadeteria
 {
@@ -10,6 +11,10 @@ namespace ProgramaCadeteria
             Helper.GenerarCadeteria(nCadeteria);
 
             Helper.GenerarInforme(nCadeteria);
+
+            Delicado PedidoDelicado = new Delicado();
+
+            
         }
     }
 }

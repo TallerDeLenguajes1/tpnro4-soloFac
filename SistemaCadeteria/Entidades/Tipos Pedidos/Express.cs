@@ -9,6 +9,17 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
 {
     class Express : Pedido
     {
+        public Express() : base()
+        {
+        }
 
+        public Express(float NumeroCliente, string Observacion, bool Estado) : base(NumeroCliente, Observacion, Estado)
+        {
+        }
+
+        public override float Costo()
+        {
+            return (float) (base.Costo() * 1.25);
+        }
     }
 }
