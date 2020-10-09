@@ -1,4 +1,5 @@
 ﻿using SistemaCadeteria.Entidades;
+using SistemaCadeteria.Entidades.Tipos_Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
@@ -6,8 +7,17 @@ using System.Text;
 
 namespace ProgramaCadeteria
 {
+    enum TipoPedido
+    {
+        Ecologico,
+        Express,
+        Delicado
+    }
+
     static class Helper
     {
+        static TipoPedido tipoPedido;
+
         static Random aleat = new Random();
         //PARA VALORES ALEATORIOS PERSONA
         static string[] Nombres = { "Fernando", "Lucia", "Juan", "Armando", "Selena", "Jose", "Lucia", "Nahuel", "Mariana", "Nicolas" };
@@ -78,6 +88,8 @@ namespace ProgramaCadeteria
             nCadete.Nombre = NombresCadetes[aleat.Next(NombresCadetes.Length)];
             nCadete.Direccion = DireccionesCadetes[aleat.Next(DireccionesCadetes.Length)];
             nCadete.Telefono = TelefonosCadetes[aleat.Next(TelefonosCadetes.Length)];
+            //Ademas determino su vehiculo cuando se genera
+            DeterminarVehiculo(nCadete);
         }
 
         public static void GenerarCliente(Cliente nCliente)
@@ -104,13 +116,27 @@ namespace ProgramaCadeteria
         /// <returns></returns>
         public static void GenerarListadoPedidos(List<Pedido> listadoPedidos)
         {
-            Pedido nPedido;
+            Pedido nPedido = null;
             Console.WriteLine("Cantidad de Pedidos a Registrar");
             int cantPed = Convert.ToInt32(Console.ReadLine());
 
+            tipoPedido = (TipoPedido)aleat.Next(3);
+
             for (int i = 0; i < cantPed; i++)
             {
-                nPedido = new Pedido();
+                switch (tipoPedido)
+                {
+                    case TipoPedido.Ecologico:
+                        nPedido = new Ecologico();
+                        break;
+                    case TipoPedido.Express:
+                        nPedido = new Express();
+                        break;
+                    case TipoPedido.Delicado:
+                        nPedido = new Delicado();
+                        break;
+                }
+                
                 GenerarPedido(nPedido);
                 listadoPedidos.Add(nPedido);
             }

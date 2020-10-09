@@ -7,9 +7,9 @@ namespace ProgramaCadeteria
 {
     class Cliente : Persona
     {
-        private List<Pedido> listadoPedidos;
+        private int cantPedidosRealizados;
 
-        internal List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
+        public int CantPedidosRealizados { get => cantPedidosRealizados; set => cantPedidosRealizados = value; }
 
         //CONSTRUCTOR POR DEFECTO
         public Cliente() : base ()
@@ -31,15 +31,14 @@ namespace ProgramaCadeteria
             return (this.ID + ";" + this.Nombre + ";" + this.Direccion + ";" + this.Telefono);
         }
 
-        public void AgregarPedido(Pedido nPedido)
+        public void AumentarCantidadPedidoRealizados()
         {
-            ListadoPedidos.Add(nPedido);
+            this.CantPedidosRealizados++;
         }
 
         public float PedidosRealizados()
         {
-
-            return 0;
+            return this.CantPedidosRealizados;
         }
     }
 }

@@ -16,5 +16,15 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
         public Ecologico(float NumeroCliente, string Observacion, bool Estado) : base(NumeroCliente, Observacion, Estado)
         {
         }
+
+        public override float Costo()
+        {
+            if (Cupon)
+            {
+                return (float)(base.Costo() * 0.9);
+            }
+
+            return base.Costo();
+        }
     }
 }

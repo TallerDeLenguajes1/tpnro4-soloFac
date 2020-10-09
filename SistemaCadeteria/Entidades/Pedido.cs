@@ -10,13 +10,15 @@ namespace ProgramaCadeteria
         private string observacion;
         private bool estado;
         private Cliente pCliente;
-        private static float costoBase = 150;
-        private static float descuento = 10;
+        private bool cupon;
+
+        private const float costoBase = 150;
 
         public float NumeroCliente { get => numeroCliente; set => numeroCliente = value; }
         public string Observacion { get => observacion; set => observacion = value; }
         public bool Estado { get => estado; set => estado = value; }
         internal Cliente PCliente { get => pCliente; set => pCliente = value; }
+        public bool Cupon { get => cupon; set => cupon = value; }
 
         //CONSTRUCTOR POR DEFECTO
         public Pedido()
@@ -26,11 +28,12 @@ namespace ProgramaCadeteria
         }
 
         //CONSTRUCTOR PEDIDO
-        public Pedido(float NumeroCliente, string Observacion, bool Estado)
+        public Pedido(float NumeroCliente, string Observacion, bool Cupon)
         {
             this.NumeroCliente = NumeroCliente;
             this.Observacion = Observacion;
             this.Estado = false;
+            this.Cupon = Cupon;
             //Composicion
             this.PCliente = new Cliente();
         }
@@ -44,7 +47,6 @@ namespace ProgramaCadeteria
         {
             return (this.pCliente.DatosCliente());
         }
-
 
         public virtual float Costo()
         {

@@ -19,6 +19,11 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
 
         public override float Costo()
         {
+            if (Cupon)
+            {
+                return (float)((base.Costo() * 1.25) * 0.9);
+            }
+
             return (float) (base.Costo() * 1.25);
         }
     }

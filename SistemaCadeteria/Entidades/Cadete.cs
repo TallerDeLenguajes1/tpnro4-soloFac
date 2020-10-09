@@ -96,6 +96,10 @@ namespace ProgramaCadeteria
             return this.listadoPedidos.Count;
         }
 
+        /// <summary>
+        /// Retorna en formato string los datos del cadete separados por ';'
+        /// </summary>
+        /// <returns>Datos del Cadete</returns>
         public string DatosCadete()
         {
             return (this.ID + ";" + this.Nombre + ";" + this.Direccion + ";" + this.Telefono);
