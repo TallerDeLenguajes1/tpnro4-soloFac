@@ -7,16 +7,12 @@ using System.Text;
 
 namespace ProgramaCadeteria
 {
-    enum TipoPedido
-    {
-        Ecologico,
-        Express,
-        Delicado
-    }
-
     static class Helper
     {
-        static TipoPedido tipoPedido;
+        public static Dictionary<Vehiculo, TPedido> DicVehiculoPedido = new Dictionary<Vehiculo, TPedido>() { {Vehiculo.Bici, TPedido.Ecologico}
+        , {Vehiculo.Moto, TPedido.Express}, {Vehiculo.Auto, TPedido.Delicado} };
+
+        static TPedido TipoPedido;
 
         static Random aleat = new Random();
         //PARA VALORES ALEATORIOS PERSONA
@@ -120,23 +116,23 @@ namespace ProgramaCadeteria
             Console.WriteLine("Cantidad de Pedidos a Registrar");
             int cantPed = Convert.ToInt32(Console.ReadLine());
 
-            tipoPedido = (TipoPedido)aleat.Next(3);
+            TipoPedido = (TPedido)aleat.Next(3);
 
             for (int i = 0; i < cantPed; i++)
             {
-                switch (tipoPedido)
+                switch (TipoPedido)
                 {
-                    case TipoPedido.Ecologico:
+                    case TPedido.Ecologico:
                         nPedido = new Ecologico();
                         break;
-                    case TipoPedido.Express:
+                    case TPedido.Express:
                         nPedido = new Express();
                         break;
-                    case TipoPedido.Delicado:
+                    case TPedido.Delicado:
                         nPedido = new Delicado();
                         break;
                 }
-                
+                nPedido.TipoPedido = TipoPedido;
                 GenerarPedido(nPedido);
                 listadoPedidos.Add(nPedido);
             }
@@ -188,6 +184,7 @@ namespace ProgramaCadeteria
             Console.WriteLine("Estado: " + nPedido.Estado);
             Console.WriteLine("Cliente que realizo el pedido: ");
             MostrarDatosCliente(nPedido.PCliente);
+            Console.WriteLine("Tipo Pedido: " + nPedido.TipoPedido);
         }
         public static void MostrarDatosCliente(Cliente nCliente)
         {
@@ -204,6 +201,7 @@ namespace ProgramaCadeteria
             Console.WriteLine("Nombre: " + nCadete.Nombre);
             Console.WriteLine("Direccion: " + nCadete.Direccion);
             Console.WriteLine("Telefono: " + nCadete.Telefono);
+            Console.WriteLine("Vehiculo: " + nCadete.TipoVehiculo);
         }
 
 
@@ -221,17 +219,35 @@ namespace ProgramaCadeteria
 
             if (variable == 0)
             {
-                nCadete.TipoVehiculo1 = Vehiculo.Bici;
+                nCadete.TipoVehiculo = Vehiculo.Bici;
             }
             else if (variable == 1)
             {
-                nCadete.TipoVehiculo1 = Vehiculo.Moto;
+                nCadete.TipoVehiculo = Vehiculo.Moto;
             }
             else
             {
-                nCadete.TipoVehiculo1 = Vehiculo.Auto;
+                nCadete.TipoVehiculo = Vehiculo.Auto;
             }
         }
 
+
+        public static bool Comparar_TPedido_Vehiculo(TPedido TipoPedido, Vehiculo TipoVehiculo)
+        {
+            if (TipoPedido == TPedido.Ecologico && TipoVehiculo == Vehiculo.Bici)
+            {
+                return true;
+            }
+            else if (TipoPedido == TPedido.Express && TipoVehiculo == Vehiculo.Moto)
+            {
+                return true;
+            }
+            else if (TipoPedido == TPedido.Delicado && TipoVehiculo == Vehiculo.Auto)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -4,6 +4,13 @@ using System.Text;
 
 namespace ProgramaCadeteria
 {
+    enum TPedido
+    {
+        Ecologico,
+        Express,
+        Delicado
+    }
+
     class Pedido
     {
         private float numeroCliente;
@@ -11,6 +18,7 @@ namespace ProgramaCadeteria
         private bool estado;
         private Cliente pCliente;
         private bool cupon;
+        private TPedido tipoPedido;
 
         private const float costoBase = 150;
 
@@ -19,6 +27,7 @@ namespace ProgramaCadeteria
         public bool Estado { get => estado; set => estado = value; }
         internal Cliente PCliente { get => pCliente; set => pCliente = value; }
         public bool Cupon { get => cupon; set => cupon = value; }
+        internal TPedido TipoPedido { get => tipoPedido; set => tipoPedido = value; }
 
         //CONSTRUCTOR POR DEFECTO
         public Pedido()
@@ -28,12 +37,13 @@ namespace ProgramaCadeteria
         }
 
         //CONSTRUCTOR PEDIDO
-        public Pedido(float NumeroCliente, string Observacion, bool Cupon)
+        public Pedido(float NumeroCliente, string Observacion, bool Cupon, TPedido TipoPedido)
         {
             this.NumeroCliente = NumeroCliente;
             this.Observacion = Observacion;
             this.Estado = false;
             this.Cupon = Cupon;
+            this.TipoPedido = TipoPedido;
             //Composicion
             this.PCliente = new Cliente();
         }

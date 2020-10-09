@@ -1,4 +1,5 @@
 ﻿using SistemaCadeteria.Entidades;
+using SistemaCadeteria.Entidades.Tipos_Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -42,6 +43,10 @@ namespace ProgramaCadeteria
         //Agregacion
         public void AgregarPedido(Pedido nPedido)
         {
+            //if (Helper.Comparar_TPedido_Vehiculo(nPedido.TipoPedido, this.TipoVehiculo))    //PODRIA SER CON UN DICCIONARIO?
+            //{
+            //    this.ListadoPedidos.Add(nPedido);
+            //}
             this.ListadoPedidos.Add(nPedido);
         }
 
