@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaCadeteria.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
@@ -8,6 +9,11 @@ namespace ProgramaCadeteria
     static class Helper
     {
         static Random aleat = new Random();
+        //PARA VALORES ALEATORIOS PERSONA
+        static string[] Nombres = { "Fernando", "Lucia", "Juan", "Armando", "Selena", "Jose", "Lucia", "Nahuel", "Mariana", "Nicolas" };
+        static string[] Direcciones = { "Av Roca 990", "Gral Paz 589", "25 de Mayo 89", "Buenos Aires 1282", "Laprida 150", "Cordoba 785", "Santiago 850", "Bernabe Araoz 584", "Av. Mitre 587", "Pje Padilla 897", "Cecilia", "Lautaro", "Gabriel", "Javier", "Sofia", "Gerardo", "Gonzalo", "Camilo", "Martin", "Nadia", "Av Alem 90", "Lamadrid 51", "San Martin 58", "Av. Soldati 85", "Mendoza 45", "San Juan 75", "Av Avellaneda 50", "Av America 58", "Ayacucho 26", "Av Salta 97" };
+        static string[] Telefonos = { "3817020356", "3817434439", "3813022745", "3814893804", "3812423882", "3813397144", "3815367815", "3811212862", "3819710230", "3818225830", "3817020356", "3817434439", "3813022745", "3814893804", "3812423882", "3813397144", "3815367815", "3811212862", "3819710230", "3818225830" };
+
         //PARA VALORES ALEATORIOS CADETE
         static string[] NombresCadetes = { "Cecilia", "Lautaro", "Gabriel", "Javier", "Sofia", "Gerardo", "Gonzalo", "Camilo", "Martin", "Nadia" };
         static string[] DireccionesCadetes = { "Av Alem 90", "Lamadrid 51", "San Martin 58", "Av. Soldati 85", "Mendoza 45", "San Juan 75", "Av Avellaneda 50", "Av America 58", "Ayacucho 26", "Av Salta 97" };
@@ -46,8 +52,6 @@ namespace ProgramaCadeteria
 
         public static void GenerarCadeteria(Cadeteria nCadeteria)
         {
-            Random aleat = new Random();
-
             nCadeteria.Nombre = "Cadeteria Rapida";
             GenerarListadoCadetes(nCadeteria.ListadoCadetes);
             foreach (Cadete cadete in nCadeteria.ListadoCadetes)
@@ -57,13 +61,21 @@ namespace ProgramaCadeteria
             }
         }
 
+
+
+        public static void GenerarPersona(Persona nPersona)
+        {
+            nPersona.ID = aleat.Next(550);
+            nPersona.Nombre = Nombres[aleat.Next(Nombres.Length)];
+            nPersona.Direccion = Direcciones[aleat.Next(Direcciones.Length)];
+            nPersona.Telefono = Telefonos[aleat.Next(Telefonos.Length)];
+        }
+
         /// <summary>
         /// Genera Cadete de valores aleatorios ID, Nombre, Direccion, Telefono, Listado de Pedidos Vacio
         /// </summary>
         public static void GenerarCadete(Cadete nCadete)
         {
-            Random aleat = new Random();
-
             nCadete.ID = aleat.Next(550);
             nCadete.Nombre = NombresCadetes[aleat.Next(NombresCadetes.Length)];
             nCadete.Direccion = DireccionesCadetes[aleat.Next(DireccionesCadetes.Length)];
@@ -72,8 +84,6 @@ namespace ProgramaCadeteria
 
         public static void GenerarCliente(Cliente nCliente)
         {
-            Random aleat = new Random();
-
             nCliente.ID = aleat.Next(550);
             nCliente.Nombre = NombresClientes[aleat.Next(NombresClientes.Length)];
             nCliente.Direccion = DireccionesClientes[aleat.Next(DireccionesClientes.Length)];
@@ -82,8 +92,6 @@ namespace ProgramaCadeteria
 
         public static void GenerarPedido(Pedido nPedido)
         {
-            Random aleat = new Random();
-
             nPedido.NumeroCliente = aleat.Next(550);
             nPedido.Observacion = Observaciones[aleat.Next(Observaciones.Length)];
             nPedido.Estado = false;

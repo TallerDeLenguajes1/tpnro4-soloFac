@@ -40,9 +40,11 @@
     <Compile Include="Entidades\Cadeteria.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Pedido.cs" />
-    <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entidades\Tipos Pedidos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
