@@ -17,27 +17,18 @@ namespace ProgramaCadeteria
             List<Pedido> listadoPedidosAleatorios = new List<Pedido>();
             Helper.GenerarListadoPedidos(listadoPedidosAleatorios);
 
+            //DE UNA LISTA DE PEDIDOS ALEATORIOS DETERMINA PARA CADA CADETE EL PEDIDO, SI EL CADETE LO ACEPTA
             foreach (Cadete cadete in nCadeteria.ListadoCadetes)
             {
-                foreach (Pedido pedido in cadete.ListadoPedidos)
-                {
-                    TPedido TipoPedido = pedido.TipoPedido;
-                    if (Helper.DicVehiculoPedido.TryGetValue(cadete.TipoVehiculo, out TipoPedido))
-                    {
-                        if (aleat.Next(2) == 1)
-                        {
-                            cadete.AgregarPedido(pedido);
-                        }
-                    }
-                }
+                Helper.DeterminarPedidosCadete(cadete, listadoPedidosAleatorios);
+                Helper.DeterminarEntregaPedidos(cadete.ListadoPedidos);
             }
 
-
+            Helper.MostrarInformacionCompletaCadeteria(nCadeteria);
 
             Helper.GenerarInforme(nCadeteria);
 
-            Delicado PedidoDelicado = new Delicado();
-
+            Console.ReadLine();
         }
     }
 }

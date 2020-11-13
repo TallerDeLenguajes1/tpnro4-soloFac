@@ -13,7 +13,7 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
         {
         }
 
-        public Express(float NumeroCliente, string Observacion, bool Estado) : base(NumeroCliente, Observacion, Estado)
+        public Express(float NumeroCliente, string Observacion, bool Estado, TPedido TipoPedido) : base(NumeroCliente, Observacion, Estado, TipoPedido)
         {
         }
 

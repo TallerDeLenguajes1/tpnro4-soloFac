@@ -13,7 +13,7 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
         {
         }
 
-        public Ecologico(float NumeroCliente, string Observacion, bool Estado) : base(NumeroCliente, Observacion, Estado)
+        public Ecologico(float NumeroCliente, string Observacion, bool Estado, TPedido TipoPedido) : base(NumeroCliente, Observacion, Estado, TipoPedido)
         {
         }
 

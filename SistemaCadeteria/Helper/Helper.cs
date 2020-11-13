@@ -2,7 +2,7 @@
 using SistemaCadeteria.Entidades.Tipos_Pedidos;
 using System;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
+//using System.Net.Http.Headers;
 using System.Text;
 
 namespace ProgramaCadeteria
@@ -55,7 +55,7 @@ namespace ProgramaCadeteria
             }
         }
 
-
+        /*
         public static void GenerarCadeteria(Cadeteria nCadeteria)
         {
             nCadeteria.Nombre = "Cadeteria Rapida";
@@ -66,6 +66,7 @@ namespace ProgramaCadeteria
                 DeterminarEntregaPedidos(cadete.ListadoPedidos);
             }
         }
+        */
 
         public static void GenerarPersona(Persona nPersona)
         {
@@ -157,7 +158,7 @@ namespace ProgramaCadeteria
         }
 
         /// <summary>
-        /// Determina si el Pedido fue entregado o no
+        /// De una lista de pedidos determina si cada Pedido fue entregado o no
         /// </summary>
         /// <returns>Lista completa con los valores que ya tenia y su Estado de entrega que se detemrino en esta funcion</returns>
         public static void DeterminarEntregaPedidos(List<Pedido> listadoPedidos)
@@ -185,6 +186,7 @@ namespace ProgramaCadeteria
             Console.WriteLine("Cliente que realizo el pedido: ");
             MostrarDatosCliente(nPedido.PCliente);
             Console.WriteLine("Tipo Pedido: " + nPedido.TipoPedido);
+            Console.WriteLine("Costo: " + nPedido.Costo());     //Uso polimorfico de la funcion Costo
         }
         public static void MostrarDatosCliente(Cliente nCliente)
         {
@@ -248,6 +250,65 @@ namespace ProgramaCadeteria
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Recibe un cadete y a partir de un valor aleatorio generado determina si el pedido sera o no asignado, tambien compara que tenga
+        /// correpondencia el Vehiculo del cadete con el Tipo Pedido que puede entregar
+        /// </summary>
+        /// <param name="cadete"></param>
+        public static void DeterminarPedidosCadete(Cadete cadete, List<Pedido> ListadoPedidos)
+        {
+            foreach (Pedido pedido in ListadoPedidos)
+            {
+                TPedido TipoPedido = pedido.TipoPedido;
+                if (Helper.DicVehiculoPedido.TryGetValue(cadete.TipoVehiculo, out TipoPedido))  //CORREGIR
+                {
+                    if (CadeteAceptaPedido())
+                    {
+                        cadete.AgregarPedido(pedido);
+                    }
+                }
+            }
+            foreach (Pedido pedido in cadete.ListadoPedidos)
+            {
+                ListadoPedidos.Remove(pedido);
+            }
+        }
+
+        public static bool CadeteAceptaPedido()
+        {
+            if (aleat.Next(2) == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static void MostrarInformacionCompletaCadeteria(Cadeteria nCadeteria)
+        {
+            foreach (Cadete cadete in nCadeteria.ListadoCadetes)
+            {
+                Helper.MostrarDatosCadete(cadete);
+                if (cadete.ListadoPedidos.Count > 0)
+                {
+                    LineasDobles();
+                    Console.WriteLine("Los pedidos recibidos por ese cadete son: ");
+                    foreach (Pedido pedido in cadete.ListadoPedidos)
+                    {
+                        Console.WriteLine("\n\n----Pedido: -------------------");
+                        Helper.MostrarDatosPedido(pedido);
+                        Console.WriteLine("\n\n-------------------------------");
+                    }
+                    LineasDobles();
+                }
+
+            }
+        }
+        public static void LineasDobles()
+        {
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------");
         }
     }
 }

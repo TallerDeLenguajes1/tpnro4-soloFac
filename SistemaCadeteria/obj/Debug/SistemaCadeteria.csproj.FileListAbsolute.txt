@@ -1,0 +1,7 @@
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\obj\Debug\SistemaCadeteria.csprojAssemblyReference.cache
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\obj\Debug\SistemaCadeteria.csproj.CoreCompileInputs.cache
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\bin\Debug\SistemaCadeteria.exe.config
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\bin\Debug\SistemaCadeteria.exe
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\bin\Debug\SistemaCadeteria.pdb
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\obj\Debug\SistemaCadeteria.exe
+C:\Users\Franco\Desktop\Repositorios\codebin2#\TPN4\SistemaCadeteria\obj\Debug\SistemaCadeteria.pdb

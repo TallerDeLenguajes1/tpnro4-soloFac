@@ -13,10 +13,10 @@ namespace SistemaCadeteria.Entidades.Tipos_Pedidos
         {
         }
 
-        public Delicado(float NumeroCliente, string Observacion, bool Estado) : base(NumeroCliente, Observacion, Estado)
+        public Delicado(float NumeroCliente, string Observacion, bool Estado, TPedido TipoPedido) : base(NumeroCliente, Observacion, Estado, TipoPedido)
         {
         }
-
+         
         public override float Costo()
         {
             if (Cupon)
